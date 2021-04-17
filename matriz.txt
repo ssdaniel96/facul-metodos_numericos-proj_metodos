@@ -1,0 +1,5 @@
+!Escreva abaixo a matriz (apague a matriz de exemplo) com espaçamento e inclua o termo independente
+10.0 5.0 -1.0 1.0 2.0
+2.0 10.0 -2.0 -1.0 -26.0
+-1.0 -2.0 10.0 2.0 20.0
+1.0 3.0 2.0 10.0 -25.0

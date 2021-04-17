@@ -1,4 +1,5 @@
 from gauss import Gauss
+from matrizFileReader import MatrizFileReader
 class GaussController:
     matriz: list = []
     N: int
@@ -6,14 +7,7 @@ class GaussController:
 
     def __init__(self):
         self.__imprimir_explicacao()
-        self.__preencher_ordem_sistema()
-        self.__popular_matriz()
-        # self.__preencher_fake_para_test()
-        self.g = Gauss(self.matriz)
-        self.g.solucionar()
-        self.__imprimir_matriz(self.g.matriz_inicial, 'Matriz inicial')
-        self.__imprimir_matriz(self.g.matriz, 'Matriz escalonada')
-        self.__imprimir_raizes(self.g.raizes)
+        self.main()
 
     def __preencher_fake_para_test(self):
         self.matriz = [
@@ -33,7 +27,7 @@ class GaussController:
         print('2. Não esqueça de incluir a variavel independente')
         print('Por exemplo: \nSe a função for 23x1 + 24x2 - 2x3 = 4, inclua como 23 24 -2 4\n')
 
-    def __preencher_ordem_sistema(self):
+    def preencher_ordem_sistema(self):
         try: 
             self.N = int(input('Ordem do sistema: '))
         except:
@@ -50,7 +44,7 @@ class GaussController:
             return self.__popular_linha(N)
         return line
 
-    def __popular_matriz(self):
+    def popular_matriz(self):
         for i in range(self.N):
             line = self.__popular_linha(i)
             self.matriz.append(line)
@@ -67,7 +61,7 @@ class GaussController:
         if tam_total_variaveis != tam_necessario:
             raise Exception(f'O total de variáveis com termo independete por linha deve ser: {tam_necessario}, o total informado foi: {tam_total_variaveis}')
 
-    def __imprimir_matriz(self, matriz: [], msg: str, rep: str = 'X'):
+    def imprimir_matriz(self, matriz: [], msg: str, rep: str = 'X'):
         print('\n' + msg)
         for i in range(self.N):
             print(f'\t{rep}{i+1}', end='')
@@ -80,10 +74,45 @@ class GaussController:
                 else:
                     print(f'=\t{matriz[i][j]:.2f}')
 
-    def __imprimir_raizes(self, raizes: dict):
+    def imprimir_raizes(self, raizes: dict):
         print('\nImprimindo raizes...')
         for raiz in reversed(raizes):
             print(f'{raiz} = {raizes[raiz]:.2f}')
+
+    def __perguntar_de_execucao(self):
+        print('Que forma deseja executar?')
+        print('1 - Ler a matriz do arquivo matriz.txt')
+        print('2 - Preencher a matriz manualmente')
+        return self.__resposta_de_execucao()
+    
+    def __resposta_de_execucao(self):
+        try:
+            option = int(input('Digite a opcao:'))
+            if option < 1 or option > 2:
+                raise Exception('Option deve ser 1 ou 2')
+        except:
+            print('Opcao invalida')
+            self.__resposta_de_execucao()
+        return option
+
+    def preencher_por_arquivo(self):
+        path = 'matriz.txt'
+        readerMatriz = MatrizFileReader(path)
+        self.matriz = readerMatriz.matriz
+        self.N = readerMatriz.N
+
+    def main(self):
+        if (self.__perguntar_de_execucao() == 1):
+            self.preencher_por_arquivo()
+        else:
+            self.preencher_ordem_sistema()
+            self.popular_matriz()
+        # self.__preencher_fake_para_test()
+        self.g = Gauss(self.matriz)
+        self.g.solucionar()
+        self.imprimir_matriz(self.g.matriz_inicial, 'Matriz inicial')
+        self.imprimir_matriz(self.g.matriz, 'Matriz escalonada')
+        self.imprimir_raizes(self.g.raizes)
 
 def main():
     GaussController()
