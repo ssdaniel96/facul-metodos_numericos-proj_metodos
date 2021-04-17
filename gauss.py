@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-
 class Gauss:
     N: int
     matriz_inicial: list = []
@@ -29,24 +28,6 @@ class Gauss:
         for passo_atual_index in range(passo_total_index):
             self.__solucionar_passo(passo_atual_index)
         self.definir_raizes()
-
-    # def definir_raizes(self):
-    #     print('Definindo raizes...')
-    #     representative_letter = 'X'
-    #     contador = 0
-    #     max_index = self.N
-    #     for number_index in reversed(range(max_index)):
-    #         independente = self.matriz[number_index][self.N]
-    #         variaveis = self.matriz[number_index][0:self.N]
-    #         variaveis.reverse()
-    #         soma = independente
-    #         for n in range(len(self.raizes)+1):
-    #             if n+1 > len(self.raizes):
-    #                 variavel_divisora = variaveis[n]
-    #             else:
-    #                 soma -= variaveis[n] * self.raizes[f'{representative_letter}{self.N-n}']
-    #         self.raizes[f'{representative_letter}{number_index+1}'] = soma/variavel_divisora
-    #         contador+=1
 
     def definir_raizes(self):
         print('Definindo raizes...')
