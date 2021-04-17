@@ -4,7 +4,7 @@ class MatrizFileReader:
     matriz: list = []
     def __init__(self, path: str):
         self.path = path
-        self.main()
+        self.__main()
 
     def __definirOrdemDaMatriz(self, file):
         comment_lines_count = 0
@@ -46,5 +46,5 @@ class MatrizFileReader:
             raise Exception(f'O total de variáveis com termo independete por linha deve ser: {self.N+1}, o total informado foi: {len(variaveis)}')
         return variaveis
 
-    def main(self):
+    def __main(self):
         self.__carregar_matriz(self.path)
