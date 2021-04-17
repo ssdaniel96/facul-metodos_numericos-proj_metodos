@@ -6,7 +6,7 @@ class GaussController:
     g: Gauss
 
     def __init__(self):
-        self.__imprimir_explicacao()
+        self.__cabecalho()
         self.main()
 
     def __preencher_fake_para_test(self):
@@ -18,10 +18,13 @@ class GaussController:
         ]
         self.N = 4
 
-    def __imprimir_explicacao(self):
+    def __cabecalho(self):
         print('Olá, seja bem-vindo a um script de execução de algoritmo de Escalonamento de Gauss')
         print('Este script foi elaborado por Daniel Soares, https://github.com/ssdaniel96')
         print('UNASP-HT, 2021, Engenharia da Computação, Métodos Numéricos Computacionais, sob orientação da Profª. Thais Michelli\n')
+     
+    def __imprimir_explicacao(self):
+        print()
         print('Instruções gerais: ')
         print('1. Digite toda a equação com espaçamentos')
         print('2. Não esqueça de incluir a variavel independente')
@@ -87,7 +90,7 @@ class GaussController:
     
     def __resposta_de_execucao(self):
         try:
-            option = int(input('Digite a opcao:'))
+            option = int(input('Digite a opcao: '))
             if option < 1 or option > 2:
                 raise Exception('Option deve ser 1 ou 2')
         except:
@@ -105,6 +108,7 @@ class GaussController:
         if (self.__perguntar_de_execucao() == 1):
             self.preencher_por_arquivo()
         else:
+            self.__imprimir_explicacao()
             self.preencher_ordem_sistema()
             self.popular_matriz()
         # self.__preencher_fake_para_test()
