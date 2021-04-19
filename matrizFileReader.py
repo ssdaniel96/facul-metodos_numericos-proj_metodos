@@ -1,3 +1,4 @@
+import re
 class MatrizFileReader:
     path: str
     N: int
@@ -24,7 +25,7 @@ class MatrizFileReader:
         self.__definirOrdemDaMatriz(file_matriz)
         print('Iniciando leitura da matriz...')
         for linhano, linha in enumerate(file_matriz, 1):
-            linha = linha.strip()
+            linha = re.sub('\t', ' ', linha).strip()
             if not linha[0] == '!':
                 print(f'{linhano} - {linha}')
                 try:
