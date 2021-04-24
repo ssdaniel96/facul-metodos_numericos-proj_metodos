@@ -13,25 +13,6 @@ class gaussSiedel:
         self.n = len(matriz_a)
         self.erro_aceitavel = erro_aceitavel
 
-    def __init__(self):
-        self.__popular_teste()
-
-    def __popular_teste(self):
-        self.matriz_a = [
-            [10, 5, -1, 1, 2],
-            [2, 10, -2, -1, -26],
-            [-1, -2, 10, 2, 20],
-            [1, 3, 2, 10, -25]
-        ]
-        self.matriz_b = [
-            [0.2],
-            [-2.6],
-            [2],
-            [-2.5]
-        ]
-        self.n = 4
-        self.erro_aceitavel = 10**(-4)
-
     def __calcular_erro_absoluto(self):
         sum_list: list = []
         for item in self.matriz_b:
