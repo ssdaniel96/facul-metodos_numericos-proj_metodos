@@ -24,21 +24,24 @@ class MatrizFileReader:
         file_matriz = open(path, 'r')
         self.__definirOrdemDaMatriz(file_matriz)
         print('Iniciando leitura da matriz...')
+        count = 1
         for linhano, linha in enumerate(file_matriz, 1):
             linha = re.sub('\t', ' ', linha).strip()
             if not linha[0] == '!':
-                print(f'{linhano} - {linha}')
+                print(f'{count} - {linha}')
+                count+=1
                 try:
                     linha = self.__preencher_linha(linha)
                     self.matriz.append(linha)
                 except Exception as e:
                     print('Um erro foi encontrado.')
                     print(str(e))
-                    print(f'Abra o arquivo corrija a linha {linhaNo}')
+                    print(f'Abra o arquivo corrija a linha do arquivo (com comentários) {linhaNo}')
                     input('Pressione enter para continuar')
                     self.__carregar_matriz()
         file_matriz.close()
         self.N = len(self.matriz)
+        print()
 
     def __preencher_linha(self, line: str):
         variaveis = line.split(' ')
