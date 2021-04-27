@@ -4,6 +4,7 @@ from ..data.matrizFileReader import MatrizFileReader
 from ..data.matrizMaker import MatrizMaker
 from ..helper.valueHelper import ValueHelper
 from ..helper.matrizHelper import MatrizHelper
+from ..helper.consoleHelper import ConsoleHelper as console
 
 class GaussSiedelController:
     matriz_a: list = []
@@ -12,6 +13,7 @@ class GaussSiedelController:
     n: int = 0
 
     def __init__(self):
+        console.limpar_console()
         self.main()
 
     def __preencher_matriz_por_arquivo(self):
@@ -44,7 +46,8 @@ class GaussSiedelController:
 
     
     @staticmethod
-    def __imprimir_aproximacoes_com_erros(matriz: list, erros_absolutos: list, erros_relativos: list):
+    def __imprimir_aproximacoes_com_erros(matriz: list, erros_absolutos: list, erros_relativos: list, msg: str):
+        print(msg)
         print('N\t', end='')
         for i in range(len(matriz)):
             print(f'X{i+1}\t\t', end='')
@@ -69,7 +72,8 @@ class GaussSiedelController:
         gaussSiedel = GaussSiedel(self.matriz_a, self.matriz_b, self.erro_aceitavel)
         gaussSiedel.executar_solucao()
         MatrizHelper.imprimir_matriz(self.matriz_a, 'Matriz')
-        self.__imprimir_aproximacoes_com_erros(gaussSiedel.matriz_b, gaussSiedel.erros_absolutos, gaussSiedel.erros_relativos)
+        title = 'Aproximações e Erros'
+        self.__imprimir_aproximacoes_com_erros(gaussSiedel.matriz_b, gaussSiedel.erros_absolutos, gaussSiedel.erros_relativos, title)
         
 
     

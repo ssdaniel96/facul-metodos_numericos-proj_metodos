@@ -2,6 +2,8 @@ from ..domain.gauss import Gauss
 from ..data.matrizFileReader import MatrizFileReader
 from ..data.matrizMaker import MatrizMaker
 from ..helper.matrizHelper import MatrizHelper
+from ..helper.consoleHelper import ConsoleHelper as console
+
 
 
 class GaussController:
@@ -10,13 +12,15 @@ class GaussController:
     g: Gauss
 
     def __init__(self):
+        console.limpar_console()
         self.main()
 
     @staticmethod
     def imprimir_raizes(raizes: dict):
-        print('\nImprimindo raizes...')
+        print('\nRaizes')
         for raiz in reversed(raizes):
             print(f'{raiz} = {raizes[raiz]:.4f}')
+        print()
 
     @staticmethod
     def perguntar_de_execucao():
@@ -34,6 +38,7 @@ class GaussController:
         except:
             print('Opcao invalida')
             return GaussController.__resposta_de_execucao()
+        print()
         return option
 
     def preencher_por_arquivo(self):
@@ -56,4 +61,4 @@ class GaussController:
         self.g.solucionar()
         MatrizHelper.imprimir_matriz(self.g.matriz_inicial, 'Matriz inicial')
         MatrizHelper.imprimir_matriz(self.g.matriz, 'Matriz escalonada')
-        MatrizHelper.imprimir_matriz(self.g.raizes)
+        self.imprimir_raizes(self.g.raizes)
