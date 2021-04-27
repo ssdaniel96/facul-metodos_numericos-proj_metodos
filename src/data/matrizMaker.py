@@ -2,7 +2,7 @@ class MatrizMaker:
     N: int
     matriz: list = []
 
-    def preencher_ordem_sistema(self):
+    def __preencher_ordem_sistema(self):
         try:
             self.N = int(input('Ordem do sistema: '))
         except:
@@ -35,7 +35,7 @@ class MatrizMaker:
 
     def popular_matriz(self):
         self.__imprimir_explicacao()
-        self.preencher_ordem_sistema()
+        self.__preencher_ordem_sistema()
         self.__popular_matriz()
         return self.matriz
 
