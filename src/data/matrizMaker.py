@@ -28,7 +28,7 @@ class MatrizMaker:
             return self.__popular_linha(N)
         return line
 
-    def __popular_matriz():
+    def __popular_matriz(self):
         for i in range(self.N):
             line = self.__popular_linha(i)
             self.matriz.append(line)
