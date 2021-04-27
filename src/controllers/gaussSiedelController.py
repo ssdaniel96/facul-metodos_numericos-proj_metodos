@@ -5,6 +5,9 @@ from ..data.matrizMaker import MatrizMaker
 from ..helper.valueHelper import ValueHelper
 from ..helper.matrizHelper import MatrizHelper
 from ..helper.consoleHelper import ConsoleHelper as console
+from colorama import Fore
+from colorama import Style
+
 
 class GaussSiedelController:
     matriz_a: list = []
@@ -20,13 +23,13 @@ class GaussSiedelController:
         self.matriz_a = MatrizFileReader('matriz.txt').matriz
         self.n = len(self.matriz_a)
         self.__preencher_erro_aceitavel()
-        self.__preencher_aproximacoes_iniciais()
+        self.__preencher_aproximacoes()
 
 
     def __preencher_matriz(self):
         self.__preencher_matriz_e_ordem()
         self.__preencher_erro_aceitavel()
-        self.__preencher_aproximacoes_iniciais()
+        self.__preencher_aproximacoes()
 
 
     def __preencher_matriz_e_ordem(self):
@@ -34,6 +37,21 @@ class GaussSiedelController:
         mk.popular_matriz()
         self.matriz_a = mk.matriz
         self.n = mk.N
+
+    def __preencher_aproximacoes(self):
+        opcao = ValueHelper.get(int, 'Deseja preencher os valores iniciais?\n1. Sim\n2. Não\nInsira o valor (1/2): ')
+        if (opcao) == 1:
+            self.__preencher_aproximacoes_iniciais()
+        else:
+            self.__calcular_aproximacoes_iniciais()
+
+    def __calcular_aproximacoes_iniciais(self):
+        print('Beleza, pode deixar que estamos calculando pra você ;)')
+        for i in range(self.n):
+            value = self.matriz_a[i][-1] / self.matriz_a[i][i]
+            self.matriz_b.append([value])
+            print(f'X{i+1} = {value}')
+
 
     def __preencher_aproximacoes_iniciais(self):
         print('Vamos preencher os erros inicias: ')
@@ -55,12 +73,15 @@ class GaussSiedelController:
 
         
         for i in range(len(matriz[0])):
-            print(f'{i+1}\t',end='')
+            line = f'{i}\t'
             for j in range(len(matriz)):
-                print(f'{matriz[j][i]:.4f}\t\t', end='')
+                line += f'{matriz[j][i]:.4f}\t\t'
             if (i != 0):
-                print(f'{erros_absolutos[i-1]:.4f}\t\t{erros_relativos[i-1]:.4f}', end='')
-            print()
+                line += f'{erros_absolutos[i-1]:.4f}\t\t{erros_relativos[i-1]:.4f}'
+            if (i == len(matriz[0])-1):
+                print(f'{Fore.YELLOW}{line}{Style.RESET_ALL}')
+            else:
+                print(line)
 
             
     def main(self):
