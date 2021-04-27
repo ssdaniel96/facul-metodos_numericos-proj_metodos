@@ -1,5 +1,4 @@
-class gaussSiedel:
-
+class GaussSiedel:
     matriz_a: list = []
     matriz_b: list = []
     erros_absolutos: list = []
@@ -33,7 +32,7 @@ class gaussSiedel:
         erro_relativo = self.erros_absolutos[-1] / maior_valor
         self.erros_relativos.append(erro_relativo)
 
-    def adicionar_valores(self, valores: list):
+    def __adicionar_valores(self, valores: list):
         for i, valor in enumerate(valores, 0):
             self.matriz_b[i].append(valor)
 
@@ -42,7 +41,7 @@ class gaussSiedel:
         for i in range(self.n):
             novo_valor = self.__executar_passo(i)
             novos_valores.append(novo_valor)
-        self.adicionar_valores(novos_valores)
+        self.__adicionar_valores(novos_valores)
         self.__calcular_erro_absoluto()
         self.__calcular_erro_relativo()
 
