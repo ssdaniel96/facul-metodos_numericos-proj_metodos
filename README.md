@@ -11,6 +11,7 @@ Implementado:
 - Método de Lagrange
 
 TODO:
++ Implementar em LagrangeController uma forma de ler os pontos iniciais por arquivo.
 + Refatorar classes Helper para apenas módulos com funções 'mais puras'
 
 
