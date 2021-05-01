@@ -11,21 +11,21 @@ class Lagrange:
         self.y_list = y_list
         self.x_point = x_point
 
-    def __calcular_Ln(self, x_point: float, xn: float, xk: float):
+    def __calcular_Ln_Item(self, x_point: float, xn: float, xk: float):
         value = (x_point-xk)/(xn-xk)
         return value
 
-    def __calcular_L_Y(self, n: int):
+    def __calcular_Ln_Y(self, n: int):
         ln = 1
         for k in range(self.k_degree+1):
             if (k != n):
-                ln *= self.__calcular_Ln(self.x_point,
-                                           self.x_list[n], 
-                                           self.x_list[k])
+                ln *= self.__calcular_Ln_Item(self.x_point,
+                                                self.x_list[n], 
+                                                self.x_list[k])
         return ln * self.y_list[n]
 
     def calcular_y(self):
         self.y_point = 0
         for k in range(self.k_degree+1):
-            self.y_point += self.__calcular_L_Y(k)
+            self.y_point += self.__calcular_Ln_Y(k)
         return self.y_point
