@@ -8,7 +8,7 @@ Implementado:
 - Criação de matriz por console ou pela leitura do arquivo matriz.txt
 - Método de Gauss
 - Método de GaussSiedel
-- Método de Lagrange
+- Método de Lagrange (Obrigado ao Richard Baldin fazendo papel de analista)
 
 TODO:
 + Implementar em LagrangeController uma forma de ler os pontos iniciais por arquivo.
