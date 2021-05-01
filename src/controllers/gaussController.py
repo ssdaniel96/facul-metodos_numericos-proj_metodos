@@ -2,7 +2,6 @@ from ..domain.gauss import Gauss
 from ..data.matrizFileReader import MatrizFileReader
 from ..data.matrizMaker import MatrizMaker
 from ..helper.matrizHelper import MatrizHelper
-from ..helper.consoleHelper import ConsoleHelper as console
 
 
 
@@ -12,7 +11,6 @@ class GaussController:
     g: Gauss
 
     def __init__(self):
-        console.limpar_console()
         self.main()
 
     @staticmethod

@@ -4,7 +4,6 @@ from ..data.matrizFileReader import MatrizFileReader
 from ..data.matrizMaker import MatrizMaker
 from ..helper.valueHelper import ValueHelper
 from ..helper.matrizHelper import MatrizHelper
-from ..helper.consoleHelper import ConsoleHelper as console
 from colorama import Fore
 from colorama import Style
 
@@ -16,7 +15,6 @@ class GaussSiedelController:
     n: int = 0
 
     def __init__(self):
-        console.limpar_console()
         self.main()
 
     def __preencher_matriz_por_arquivo(self):
