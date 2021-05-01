@@ -8,9 +8,9 @@ Implementado:
 - Criação de matriz por console ou pela leitura do arquivo matriz.txt
 - Método de Gauss
 - Método de GaussSiedel
+- Método de Lagrange
 
 TODO:
-+ Médoto de Lagrange
 + Refatorar classes Helper para apenas módulos com funções 'mais puras'
 
 
